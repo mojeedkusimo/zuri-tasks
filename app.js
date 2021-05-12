@@ -1,8 +1,8 @@
 const express = require("express");
 require("dotenv").config();
-const router = require("./routes");
+// const router = require("./routes");
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5000
 const app = express();
 
 app.use(express.json());
@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
     return res.send("Welcome to My Zuri Tasks. Please the documentation for help");
 })
 
-app.use("/api", router);
+// app.use("/api", router);
 
 app.use((req, res, next) => {
     let error = new Error("Page Not Found");
