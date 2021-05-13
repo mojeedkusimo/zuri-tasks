@@ -38,8 +38,10 @@ let readData = async (req, res, next) => {
 let updateData = async (req, res, next) => {
     try {
         const { name, email, country } = req.body;
-
-        const setData = await db.query("UPDATE data SET name=$1, email=$2, country=$3 WHERE id=$4", [ name, email, country , req.params.id ]);
+        
+        name === undefined ? console.log('name not provided') : await db.query("UPDATE data SET name=$1 WHERE id=$2", [ name, req.params.id ]);
+        email === undefined ? console.log('email not provided') : await db.query("UPDATE data SET email=$1 WHERE id=$2", [ email, req.params.id ]);
+        country === undefined ? console.log('country not provided') : await db.query("UPDATE data SET country=$1 WHERE id=$2", [ country, req.params.id ]);
 
         return res.json({
             status: "success",
